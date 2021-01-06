@@ -13,10 +13,19 @@
 //*   See the License for the specific language governing permissions and
 //*   limitations under the License.
 //****************************************************************************
-//COBOLCP  JOB REGION=0M,MSGCLASS=1,NOTIFY=&SYSUID
+//COBOLCP  JOB REGION=0M,MSGCLASS=1,NOTIFY=&SYSUID,JOBRC=LASTRC
 //***********************************************************
+//* EXIST checks if ZG2.OBJ exists
+//* If it doesn't - return RC > 0
+//EXIST EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *,SYMBOLS=EXECSYS
+ LISTC ENT('&SYSUID..ZG2.OBJ')
+/*
+//STEPIF IF RC = 0 THEN
 //CLEAN EXEC PGM=IEFBR14
 //OLDDS  DD DSN=&SYSUID..ZG2.OBJ,DISP=(SHR,DELETE)
+//ENDIF ENDIF
 //***********************************************************
 //COMPILE EXEC PGM=IGYCRCTL
 //STEPLIB  DD   DSNAME=IGY420.SIGYCOMP,DISP=SHR

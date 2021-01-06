@@ -13,10 +13,19 @@
 //*   See the License for the specific language governing permissions and
 //*   limitations under the License.
 //****************************************************************************
-//COBOLBN  JOB REGION=0M,MSGCLASS=1,NOTIFY=&SYSUID
+//COBOLBN  JOB REGION=0M,MSGCLASS=1,NOTIFY=&SYSUID,JOBRC=LASTRC
 //***********************************************************
+//* EXIST checks if ZG2.EXEC exists
+//* If it doesn't - return RC > 0
+//EXIST EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *,SYMBOLS=EXECSYS
+ LISTC ENT('&SYSUID..ZG2.EXEC')
+/*
+//STEPIF IF RC = 0 THEN
 //CLEAN EXEC PGM=IEFBR14
 //OLDDS  DD DSN=&SYSUID..ZG2.EXEC,DISP=(SHR,DELETE)
+//ENDIF ENDIF
 //***********************************************************
 //BIND    EXEC PGM=IEWBLINK
 //SYSLIB   DD DSN=CEE.SCEELKED,DISP=SHR
