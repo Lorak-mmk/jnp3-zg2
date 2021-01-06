@@ -16,7 +16,7 @@
 //COBOLCP  JOB REGION=0M,MSGCLASS=1,NOTIFY=&SYSUID,JOBRC=LASTRC
 //***********************************************************
 //* EXIST checks if ZG2.OBJ exists
-//* If it doesn't - return RC > 0
+//* Perform CLEAN only if it exists
 //EXIST EXEC PGM=IDCAMS
 //SYSPRINT DD SYSOUT=*
 //SYSIN    DD *,SYMBOLS=EXECSYS
