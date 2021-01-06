@@ -13,12 +13,12 @@
       * See the License for the specific language governing permissions
       * and limitations under the License.
       ******************************************************************
-      
+
       *-----------------------
        IDENTIFICATION DIVISION.
       *-----------------------
-       PROGRAM-ID.    FXSORT
-       AUTHOR.        Jeff Bisti
+       PROGRAM-ID.    FXSORT.
+       AUTHOR.        Jeff Bisti.
       *--------------------
        ENVIRONMENT DIVISION.
       *--------------------
@@ -45,7 +45,6 @@
            05 FX-NAME-M      PIC X(50).
            05 FX-PRICE-M     PIC $$,$$$,$$9.99.
            05 FILLER PIC X(17).
-
        FD  FXLIST-SORTED RECORDING MODE F.
        01  PRINT-REC.
            05  FX-NAME-S      PIC X(50).
@@ -70,22 +69,17 @@
            05  FX-PRICE-I     PIC $$,$$$,$$9.99.
            05  FILLER PIC X(17).
       *
-
       *------------------
        PROCEDURE DIVISION.
       *------------------
-
-
        PROCESS-RECORDS.
            DISPLAY "MERGING FILES"
            MERGE FXLIST-WORK ON ASCENDING KEY FX-NAME-W IN FX-REC
            USING FXLIST-B, FXLIST-M, FXLIST-J GIVING FXLIST-MERGE
-
            DISPLAY "SORTING RECORDS".
            SORT FXLIST-WORK ON ASCENDING KEY FX-PRICE-W IN FX-REC
            USING FXLIST-MERGE GIVING FXLIST-SORTED
            .
-
        CLOSE-STOP.
            DISPLAY "NOW I'M STOPPING".
            STOP RUN.

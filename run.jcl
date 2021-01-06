@@ -13,13 +13,13 @@
 //*   See the License for the specific language governing permissions and
 //*   limitations under the License.
 //****************************************************************************
-//COBOLGO  JOB REGION=0M,MSGCLASS=1,NOTIFY=&SYSUID           
+//COBOLGO  JOB REGION=0M,MSGCLASS=1,NOTIFY=&SYSUID
 //***********************************************************
-//JPARSE EXEC PGM=MYFIRST                                    
-//STEPLIB  DD   DSNAME=IBMUSER.COBOL.EXEC(MYFIRST),DISP=SHR  
-//FXBOSS    DD DSN=IBMUSER.MYFIRST.INPUT(INPUT1),DISP=SHR    
-//FXMXR     DD DSN=IBMUSER.MYFIRST.INPUT(INPUT2),DISP=SHR    
-//FXJHS     DD DSN=IBMUSER.MYFIRST.INPUT(INPUT3),DISP=SHR    
-//FXLSTMRG  DD DSN=&&TMP,DISP=(,PASS),UNIT=SYSALLDA,         
-//          SPACE=(CYL,10)                                   
-//FXSORTED  DD DSN=IBMUSER.MYFIRST(OUTPUT),DISP=SHR          
+//JPARSE EXEC PGM=FXSORT
+//STEPLIB  DD   DSNAME=&SYSUID..ZG2.EXEC(FXSORT),DISP=SHR
+//FXBOSS    DD DSN=&SYSUID..ZG2.COMM(INPUT1),DISP=SHR
+//FXMXR     DD DSN=&SYSUID..ZG2.COMM(INPUT2),DISP=SHR
+//FXJHS     DD DSN=&SYSUID..ZG2.COMM(INPUT3),DISP=SHR
+//FXLSTMRG  DD DSN=&&TMP,DISP=(,PASS),UNIT=SYSALLDA,
+//          SPACE=(CYL,10)
+//FXSORTED  DD DSN=&SYSUID..ZG2.COMM(OUTPUT),DISP=SHR
